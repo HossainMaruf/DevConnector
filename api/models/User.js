@@ -4,57 +4,27 @@ const mongoose = require("mongoose");
 // design schema
 const userSchema = mongoose.Schema(
   {
-    username: {
+    name: {
       type: String,
-      required: true,
-      min: 3,
-      max: 15,
+      required: true 
     },
     email: {
       type: String,
-      required: true,
-      max: 30,
-      unique: true,
+      required: true 
     },
     password: {
       type: String,
-      required: true,
-      min: 6,
+      required: true 
     },
-    profilePicture: {
+    avatar: {
       type: String,
-      default: "",
     },
-    coverPicture: {
-      type: String,
-      default: "",
-    },
-    bio: {
-      type: String,
-      max: 20,
-    },
-    followers: {
-      type: Array,
-      default: [],
-    },
-    followings: {
-      type: Array,
-      default: [],
-    },
-    isAdmin: {
-      type: Boolean,
-      default: false,
-    },
-    from: {
-      type: String,
-      max: 30,
-    },
-    relationship: {
-      type: Number,
-      enum: [1, 2, 3],
+    date: {
+      type: Date,
+      default: Date.now()
     },
   },
   { timestamps: true }
 );
 
-module.exports = mongoose.model("User", userSchema);
+module.exports = mongoose.model("users", userSchema);

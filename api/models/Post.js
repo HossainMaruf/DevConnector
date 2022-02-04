@@ -1,35 +1,57 @@
 // import mongoose
 const mongoose = require("mongoose");
+const Schema = mongoose.Schema;
 
 // design schema
-const postSchema = mongoose.Schema(
+const postSchema = new Schema(
   {
-    userId: {
+    user: {
+      type: Schema.Types.ObjectId,
+      ref: 'users'
+    },
+    text: {
       type: String,
       required: true,
     },
-    desc: {
+    name: {
       type: String,
-      max: 1000,
     },
-    file: {
+    avatar: {
       type: String,
-      default: ""
     },
-    likes: {
-      type: Array,
-      default: [],
-    },
-    comments: {
-      type: Array,
-      default: [],
-    },
-    shares: {
-      type: Array,
-      default: [],
-    },
+    likes: [
+     {
+      user: {
+      type: Schema.Types.ObjectId,
+      ref: 'users'
+      }
+     } 
+    ],
+    comments: [
+     {
+      user: {
+      type: Schema.Types.ObjectId,
+      ref: 'users'
+      },
+      text: {
+        type: String,
+        required: true
+      },
+      avatar: {
+        type: String
+      },
+      date: {
+        type: Date,
+        default: Date.now
+      }
+     } 
+    ],
+    date: {
+      type: Date,
+      default: Date.now
+    }
   },
   { timestamps: true }
 );
 
-module.exports = mongoose.model("Post", postSchema);
+module.exports = mongoose.model("posts", postSchema);
