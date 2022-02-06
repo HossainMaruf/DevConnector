@@ -111,7 +111,7 @@ module.exports = function (webpackEnv) {
       {
         loader: require.resolve('css-loader'),
         options: {
-          modules: true 
+          modules: false 
         }
       },
       {
